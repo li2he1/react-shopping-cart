@@ -6,6 +6,7 @@ import Cart from './components/Cart';
 import { Provider } from 'react-redux';
 import store from './store.js';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (

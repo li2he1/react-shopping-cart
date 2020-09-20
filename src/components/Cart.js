@@ -6,20 +6,19 @@ import blackTshirt from '../images/blacktshirt.jpg';
 import blackHoddie from '../images/blackhoddie.jpg';
 import { productQuantity, clearProduct } from '../actions/productQuantity';
 import { Link } from 'react-router-dom';
-import Modal from "react-modal";
+import {Modal} from "react-bootstrap";
 import CheckOutForm from "./CheckOutForm";
 
-Modal.setAppElement("#root");
 
+// Modal.setAppElement("#root");
 function Cart({basketProps,productQuantity, clearProduct}) {
     // console.log(basketProps);
     let productsInCart = [];
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [show, setShow] = useState(false);
 
-    function toggleModal() {
-        setIsOpen(!isOpen);
-    }
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     
 
     Object.keys(basketProps.products).forEach( function(item) {
@@ -86,22 +85,23 @@ function Cart({basketProps,productQuantity, clearProduct}) {
             <div className="CartDecision">
                 <button className="continue"><Link to="/">Continue</Link></button>
                 <div className="gap"></div>
-                <button className="checkout" onClick={toggleModal}>Checkout</button>               
+                <button className="checkout" onClick={handleShow}>Checkout</button>               
             </div>
-
+            <div className="Container">
             <Modal
-                isOpen={isOpen}
-                onRequestClose={toggleModal}
-                contentLabel="My dialog"
-                className="mymodal"
-                overlayClassName="myoverlay"
-            >
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            > 
+                <Modal.Header closeButton>
+                    <Modal.Title>Let's checkout!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                 <CheckOutForm/>
-                <button onClick={toggleModal}>Close modal</button>
+                </Modal.Body>
             </Modal>
-           
-
-
+           </div>
         </div>
     )
 }
