@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import greyTshirt from '../images/greytshirt.jpg';
 import blackTshirt from '../images/blacktshirt.jpg';
 import greyHoddie from '../images/greyhoddie.jpg';

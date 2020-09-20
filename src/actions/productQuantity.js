@@ -12,3 +12,14 @@ export const productQuantity = (action, name) => {
     })
   }
 }
+export const clearProduct = (name) => {
+    return (dispatch) => {
+      console.log("Inside clear products");
+      console.log("Product Name", name);
+  
+      dispatch({
+        type: CLEAR_PRODUCT,
+        payload: name
+      })
+    }
+}

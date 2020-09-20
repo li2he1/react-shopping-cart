@@ -4,10 +4,10 @@ import greyTshirt from '../images/greytshirt.jpg';
 import greyHoddie from '../images/greyhoddie.jpg';
 import blackTshirt from '../images/blacktshirt.jpg';
 import blackHoddie from '../images/blackhoddie.jpg';
-import { productQuantity } from '../actions/productQuantity';
+import { productQuantity, clearProduct } from '../actions/productQuantity';
 
 
-function Cart({basketProps,productQuantity}) {
+function Cart({basketProps,productQuantity, clearProduct}) {
     // console.log(basketProps);
     let productsInCart = [];
 
@@ -38,7 +38,7 @@ function Cart({basketProps,productQuantity}) {
         return (
             <Fragment key={index}>
             
-                <div className="product"><ion-icon  name="close-circle"></ion-icon><img src={productImages(product)} />
+                <div className="product"><ion-icon onClick={() => clearProduct(product.tagName)} name="close-circle"></ion-icon><img src={productImages(product)} />
                     <span className="sm-hide">{product.name}</span>
                 </div>
                 <div className="price sm-hide">${product.price},00</div>
@@ -72,4 +72,4 @@ function Cart({basketProps,productQuantity}) {
 const mapStateToProps = state => ({
     basketProps: state.basketState
 });
-export default connect(mapStateToProps, { productQuantity} )(Cart);
+export default connect(mapStateToProps, { productQuantity, clearProduct} )(Cart);

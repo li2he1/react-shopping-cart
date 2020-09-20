@@ -96,6 +96,21 @@ export default (state = initialState , action) => {
                     [action.payload]: productSelected
                 }
             }
+        case CLEAR_PRODUCT: 
+            productSelected = { ...state.products[action.payload]};
+            let numbersBackup = productSelected.numbers;
+            productSelected.numbers = 0;
+            productSelected.inCart = false;
+            console.log(productSelected);
+            return {
+                ...state,
+                basketNumbers: state.basketNumbers - numbersBackup,
+                cartCost: state.cartCost - ( numbersBackup * productSelected.price ),
+                products: {
+                    ...state.products,
+                    [action.payload]: productSelected
+                }
+            }
         default:
             return state;
     }
