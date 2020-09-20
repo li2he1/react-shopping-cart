@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment,useState} from 'react';
 import { connect } from 'react-redux';
 import greyTshirt from '../images/greytshirt.jpg';
 import greyHoddie from '../images/greyhoddie.jpg';
@@ -6,11 +6,21 @@ import blackTshirt from '../images/blacktshirt.jpg';
 import blackHoddie from '../images/blackhoddie.jpg';
 import { productQuantity, clearProduct } from '../actions/productQuantity';
 import { Link } from 'react-router-dom';
+import Modal from "react-modal";
+import CheckOutForm from "./CheckOutForm";
 
+Modal.setAppElement("#root");
 
 function Cart({basketProps,productQuantity, clearProduct}) {
     // console.log(basketProps);
     let productsInCart = [];
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    function toggleModal() {
+        setIsOpen(!isOpen);
+    }
+    
 
     Object.keys(basketProps.products).forEach( function(item) {
         // console.log("basketProps");
@@ -53,6 +63,7 @@ function Cart({basketProps,productQuantity, clearProduct}) {
             </Fragment>
         )
     });
+    
     return (
         <div className="container-products">
             <div className="product-header">
@@ -75,8 +86,19 @@ function Cart({basketProps,productQuantity, clearProduct}) {
             <div className="CartDecision">
                 <button className="continue"><Link to="/">Continue</Link></button>
                 <div className="gap"></div>
-                <button className="checkout">Checkout</button>               
+                <button className="checkout" onClick={toggleModal}>Checkout</button>               
             </div>
+
+            <Modal
+                isOpen={isOpen}
+                onRequestClose={toggleModal}
+                contentLabel="My dialog"
+                className="mymodal"
+                overlayClassName="myoverlay"
+            >
+                <CheckOutForm/>
+                <button onClick={toggleModal}>Close modal</button>
+            </Modal>
            
 
 
