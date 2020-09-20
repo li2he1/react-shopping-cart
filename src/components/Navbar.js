@@ -14,9 +14,9 @@ function Navbar(props) {
                 <nav>
                     <h2>Shop</h2>
                     <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li className="cart"><Link to="/cart">
+                    <li><Link to="/react-shopping-cart/">Home</Link></li>
+                    <li><Link to="/react-shopping-cart/about">About</Link></li>
+                    <li className="cart"><Link to="/react-shopping-cart/cart">
                         <ion-icon name="basket"></ion-icon>Cart<span>{props.basketProps.basketNumbers}</span>
                     </Link></li>
                     </ul>

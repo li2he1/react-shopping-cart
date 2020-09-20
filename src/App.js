@@ -6,7 +6,7 @@ import Cart from './components/Cart';
 import { Provider } from 'react-redux';
 import store from './store.js';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.css';
+
 
 function App() {
   return (
@@ -15,8 +15,8 @@ function App() {
         <BrowserRouter>
         <Navbar/>
         <Switch>
-          <Route  exact path="/" component={Home} />
-          <Route path="/cart" component={Cart} />
+          <Route  exact path="/react-shopping-cart/" component={Home} />
+          <Route path="/react-shopping-cart/cart" component={Cart} />
         </Switch>
         </BrowserRouter>
       </div>
